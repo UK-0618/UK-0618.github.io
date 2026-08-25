@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汐見荘 | 南知多温泉 海を望む宿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sumi:#1E2B38;
+    --sumi-2:#263A4C;
+    --kinari:#F5F0E6;
+    --kinari-2:#ECE3D2;
+    --ink:#2A251F;
+    --shiosai:#66788A;
+    --gold:#AD8A56;
+    --gold-soft:#D9C39D;
+    --matsuba:#3E4E42;
+    --line: rgba(30,43,56,0.14);
+    --radius: 3px;
+    --font-display: 'Shippori Mincho', serif;
+    --font-body: 'Zen Kaku Gothic New', sans-serif;
+    --maxw: 1160px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--kinari);
+    line-height: 1.9;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;color:var(--sumi);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12px;letter-spacing:.28em;color:var(--gold);
+    font-weight:700;margin-bottom:18px;text-transform:uppercase;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);}
+  section{position:relative;}
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--gold);outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 32px;transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  .nav.scrolled{
+    background:rgba(245,240,230,0.94);backdrop-filter:blur(6px);
+    padding:14px 32px;box-shadow:0 1px 0 var(--line);
+  }
+  .nav-logo{
+    font-family:var(--font-display);font-size:19px;letter-spacing:.12em;
+    color:var(--kinari);transition:color .4s ease;
+  }
+  .nav.scrolled .nav-logo{color:var(--sumi);}
+  .nav-links{display:flex;gap:34px;}
+  .nav-links a{
+    font-size:13.5px;letter-spacing:.06em;color:var(--kinari);
+    position:relative;padding-bottom:3px;transition:color .4s ease;
+  }
+  .nav.scrolled .nav-links a{color:var(--ink);}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    border:1px solid var(--kinari);color:var(--kinari);
+    padding:9px 20px;font-size:12.5px;letter-spacing:.08em;
+    transition:all .4s ease;
+  }
+  .nav.scrolled .nav-cta{border-color:var(--sumi);color:var(--sumi);}
+  .nav-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--sumi);}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;width:26px;}
+  .nav-toggle span{height:1px;background:var(--kinari);transition:all .3s;}
+  .nav.scrolled .nav-toggle span{background:var(--sumi);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    height:100svh;min-height:640px;position:relative;overflow:hidden;
+    background:linear-gradient(180deg,#101B26 0%, #17293A 42%, #1E3548 68%, #24404F 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:var(--kinari);
+  }
+  .hero-sparkle{
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(100deg, rgba(217,195,157,0.05) 0px, rgba(217,195,157,0.05) 1px, transparent 1px, transparent 90px);
+    opacity:.5;animation:driftLight 22s linear infinite;
+  }
+  @keyframes driftLight{from{transform:translateX(0);}to{transform:translateX(-180px);}}
+  .hero-horizon{
+    position:absolute;left:0;right:0;bottom:16%;height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold-soft) 20%, var(--gold-soft) 80%, transparent);
+    opacity:.55;
+  }
+  .hero-content{position:relative;z-index:2;padding:0 24px;}
+  .hero .eyebrow{color:var(--gold-soft);}
+  .hero .eyebrow::before{background:var(--gold-soft);}
+  .hero h1{
+    font-size:clamp(44px,8vw,88px);letter-spacing:.16em;color:var(--kinari);
+    font-weight:600;margin-bottom:22px;
+  }
+  .hero-sub{
+    font-family:var(--font-display);font-size:clamp(16px,2.4vw,22px);
+    letter-spacing:.08em;color:var(--gold-soft);margin-bottom:14px;
+  }
+  .hero-desc{font-size:14.5px;color:rgba(245,240,230,.72);letter-spacing:.03em;}
+  .scroll-cue{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;
+  }
+  .scroll-cue span{font-size:10px;letter-spacing:.3em;color:rgba(245,240,230,.6);}
+  .scroll-line{width:1px;height:34px;background:rgba(245,240,230,.4);position:relative;overflow:hidden;}
+  .scroll-line::after{
+    content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;
+    background:var(--gold-soft);animation:scrollDrop 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop{0%{top:-100%;}60%{top:100%;}100%{top:100%;}}
+
+  /* ---------- TIDE DIVIDER (signature element) ---------- */
+  .tide-divider{width:100%;line-height:0;overflow:hidden;}
+  .tide-divider svg{width:100%;height:44px;}
+  .tide-divider path{
+    fill:none;stroke-width:1.2;stroke-dasharray:6 8;
+    animation:tideFlow 14s linear infinite;
+  }
+  .tide-divider.on-light path{stroke:var(--gold);}
+  .tide-divider.on-dark path{stroke:var(--gold-soft);opacity:.55;}
+  @keyframes tideFlow{to{stroke-dashoffset:-280;}}
+  .tide-mark{
+    position:absolute;top:50%;transform:translateY(-50%);
+    animation:tideDrift 14s linear infinite;
+  }
+  @keyframes tideDrift{from{left:-4%;}to{left:104%;}}
+
+  /* ---------- GENERIC SECTION ---------- */
+  .section{padding:120px 0;}
+  .section-head{max-width:640px;margin-bottom:60px;}
+  .section-head h2{font-size:clamp(28px,3.6vw,38px);line-height:1.5;margin-bottom:22px;}
+  .section-head p{color:var(--shiosai);font-size:15px;}
+  .section.dark{background:var(--sumi);color:var(--kinari-2);}
+  .section.dark h2, .section.dark h3, .section.dark h4{color:var(--kinari);}
+  .section.alt{background:var(--kinari-2);}
+
+  /* ---------- CONCEPT ---------- */
+  .concept-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:center;}
+  .concept-lead p{font-size:15.5px;color:var(--ink);margin-bottom:16px;}
+  .concept-stats{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:28px 20px;}
+  .stat{border-top:1px solid var(--line);padding-top:14px;}
+  .stat .num{font-family:var(--font-display);font-size:26px;color:var(--sumi);display:block;}
+  .stat .label{font-size:12px;letter-spacing:.06em;color:var(--shiosai);}
+  .concept-art{aspect-ratio:4/5;position:relative;}
+  .concept-art svg{width:100%;height:100%;}
+
+  /* ---------- ONSEN ---------- */
+  .onsen-list{display:flex;flex-direction:column;}
+  .onsen-item{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;
+    padding:56px 0;border-bottom:1px solid rgba(245,240,230,.14);
+  }
+  .onsen-item:last-child{border-bottom:none;}
+  .onsen-item:nth-child(even){grid-template-columns:1.1fr .9fr;}
+  .onsen-item:nth-child(even) .onsen-visual{order:2;}
+  .onsen-visual{aspect-ratio:5/4;border-radius:var(--radius);overflow:hidden;position:relative;}
+  .onsen-visual svg{width:100%;height:100%;}
+  .onsen-name{font-size:12px;letter-spacing:.14em;color:var(--gold-soft);margin-bottom:10px;}
+  .onsen-item h3{font-size:24px;color:var(--kinari);margin-bottom:16px;}
+  .onsen-item p{font-size:14.5px;color:rgba(245,240,230,.78);}
+  .onsen-note{margin-top:88px;padding-top:34px;border-top:1px solid rgba(245,240,230,.14);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13.5px;color:rgba(245,240,230,.7);}
+
+  /* ---------- DINING ---------- */
+  .plan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:1px solid var(--line);}
+  .plan-card{background:var(--kinari);padding:40px;transition:background .3s ease;}
+  .plan-card:hover{background:var(--kinari-2);}
+  .plan-icon{width:34px;height:34px;color:var(--matsuba);margin-bottom:20px;}
+  .plan-card h3{font-size:19px;margin-bottom:10px;line-height:1.5;}
+  .plan-price{font-size:13px;color:var(--gold);letter-spacing:.04em;margin-bottom:16px;font-weight:700;}
+  .plan-card p{font-size:14px;color:var(--shiosai);}
+  .plan-tag{
+    display:inline-block;margin-top:16px;font-size:11px;letter-spacing:.08em;
+    color:var(--matsuba);border:1px solid var(--matsuba);padding:3px 10px;border-radius:20px;
+  }
+
+  /* ---------- ROOMS ---------- */
+  .room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .room-card{background:var(--kinari);border:1px solid var(--line);}
+  .room-visual{aspect-ratio:4/3;}
+  .room-visual svg{width:100%;height:100%;}
+  .room-body{padding:28px;}
+  .room-body h3{font-size:18px;margin-bottom:10px;}
+  .room-meta{display:flex;gap:14px;font-size:12.5px;color:var(--shiosai);margin-bottom:14px;}
+  .room-body p{font-size:13.5px;color:var(--ink);margin-bottom:16px;}
+  .room-price{font-size:15px;color:var(--gold);font-weight:700;}
+  .room-price small{font-size:11px;color:var(--shiosai);font-weight:400;}
+
+  /* ---------- FACILITIES ---------- */
+  .facility-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .facility-item{background:var(--kinari-2);padding:32px 24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;}
+  .facility-item .fi-icon{width:26px;height:26px;color:var(--gold);}
+  .facility-item h4{font-size:15px;margin-top:16px;}
+  .facility-item span{font-size:11.5px;color:var(--shiosai);}
+
+  /* ---------- ACCESS ---------- */
+  .access-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;}
+  .access-block h3{font-size:17px;margin:26px 0 10px;}
+  .access-block p{font-size:14px;color:var(--shiosai);}
+  .info-line{display:flex;gap:14px;font-size:14px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .info-line span:first-child{color:var(--gold);width:88px;flex-shrink:0;font-size:12.5px;letter-spacing:.04em;}
+  .spot-list{display:flex;flex-direction:column;}
+  .spot{display:grid;grid-template-columns:96px 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line);}
+  .spot:last-child{border-bottom:none;}
+  .spot-mark{font-family:var(--font-display);font-size:13px;color:var(--gold);}
+  .spot h4{font-size:16px;margin-bottom:6px;}
+  .spot p{font-size:13.5px;color:var(--shiosai);}
+
+  /* ---------- RESERVATION ---------- */
+  .res-panel{background:var(--sumi);color:var(--kinari);padding:64px;border-radius:var(--radius);}
+  .res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px 24px;margin-top:40px;}
+  .field{display:flex;flex-direction:column;gap:8px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-size:12.5px;letter-spacing:.05em;color:var(--gold-soft);}
+  .field input, .field select, .field textarea{
+    background:rgba(245,240,230,.06);border:1px solid rgba(245,240,230,.25);
+    color:var(--kinari);padding:12px 14px;font-size:14px;font-family:inherit;border-radius:2px;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(245,240,230,.35);}
+  .field select option{color:var(--ink);}
+  .res-submit-row{margin-top:34px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold);color:var(--sumi);padding:15px 40px;
+    font-size:14px;letter-spacing:.08em;font-weight:700;transition:background .3s ease, transform .2s ease;
+  }
+  .btn-primary:hover{background:var(--gold-soft);transform:translateY(-1px);}
+  .res-note{font-size:12px;color:rgba(245,240,230,.45);}
+  .res-thanks{
+    display:none;margin-top:24px;padding:18px 22px;border:1px solid rgba(217,195,157,.4);
+    font-size:13.5px;color:var(--gold-soft);border-radius:2px;
+  }
+  .res-thanks.show{display:block;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#141F29;color:rgba(245,240,230,.68);padding:70px 0 30px;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:50px;padding-bottom:50px;border-bottom:1px solid rgba(245,240,230,.1);}
+  .footer-logo{font-family:var(--font-display);font-size:22px;color:var(--kinari);letter-spacing:.1em;margin-bottom:16px;}
+  .footer-grid p{font-size:13px;line-height:2;}
+  .footer-col h5{font-size:12px;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:16px;}
+  .footer-col a{display:block;font-size:13.5px;padding:5px 0;color:rgba(245,240,230,.68);}
+  .footer-col a:hover{color:var(--gold-soft);}
+  .footer-bottom{padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11.5px;color:rgba(245,240,230,.4);}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .concept-grid, .access-grid{grid-template-columns:1fr;gap:44px;}
+    .room-grid{grid-template-columns:repeat(2,1fr);}
+    .facility-grid{grid-template-columns:repeat(2,1fr);}
+    .plan-grid{grid-template-columns:1fr;}
+    .onsen-item, .onsen-item:nth-child(even){grid-template-columns:1fr;}
+    .onsen-item:nth-child(even) .onsen-visual{order:0;}
+    .footer-grid{grid-template-columns:1fr;gap:34px;}
+    .res-panel{padding:40px 26px;}
+  }
+  @media (max-width:680px){
+    .nav-links, .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
+    .room-grid{grid-template-columns:1fr;}
+    .facility-grid{grid-template-columns:1fr 1fr;}
+    .res-grid{grid-template-columns:1fr;}
+    .section{padding:84px 0;}
+    .wrap{padding:0 22px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-logo">汐見荘</a>
+  <ul class="nav-links">
+    <li><a href="#concept">概要</a></li>
+    <li><a href="#onsen">温泉</a></li>
+    <li><a href="#dining">食事</a></li>
+    <li><a href="#rooms">客室</a></li>
+    <li><a href="#access">周辺観光</a></li>
+  </ul>
+  <a href="#reservation" class="nav-cta">ご予約</a>
+  <button class="nav-toggle" id="navToggle" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" style="display:none;position:fixed;inset:0;background:var(--sumi);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:30px;">
+  <a href="#concept" class="mnav" style="color:var(--kinari);font-size:18px;">概要</a>
+  <a href="#onsen" class="mnav" style="color:var(--kinari);font-size:18px;">温泉</a>
+  <a href="#dining" class="mnav" style="color:var(--kinari);font-size:18px;">食事</a>
+  <a href="#rooms" class="mnav" style="color:var(--kinari);font-size:18px;">客室</a>
+  <a href="#access" class="mnav" style="color:var(--kinari);font-size:18px;">周辺観光</a>
+  <a href="#reservation" class="mnav" style="color:var(--gold-soft);font-size:18px;">ご予約</a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-sparkle"></div>
+  <div class="hero-horizon"></div>
+  <div class="hero-content">
+    <div class="eyebrow">愛知県 南知多温泉</div>
+    <h1>汐見荘</h1>
+    <div class="hero-sub">波音を聞きながら、湯にとける。</div>
+    <p class="hero-desc">伊勢湾を望む、全十二室の宿。</p>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><div class="scroll-line"></div></div>
+</header>
+
+<!-- CONCEPT -->
+<section class="section" id="concept">
+  <div class="wrap concept-grid">
+    <div class="concept-lead reveal">
+      <div class="eyebrow">CONCEPT</div>
+      <h2>海と共に、<br>静かに。</h2>
+      <p>愛知県知多半島の南端、南知多町内海。伊勢湾に面したこの地で、汐見荘は目覚めてから眠るまで海の気配を感じられる宿でありたいと考えています。</p>
+      <p>大浴場も露天風呂も、客室の窓も、すべてが海に向いています。夕暮れには水平線に沈む夕陽が、湯面をそのまま橙色に染めます。</p>
+      <div class="concept-stats">
+        <div class="stat"><span class="num">12室</span><span class="label">客室数（すべて海側）</span></div>
+        <div class="stat"><span class="num">1978年</span><span class="label">創業</span></div>
+        <div class="stat"><span class="num">塩化物泉</span><span class="label">泉質・温まりの湯</span></div>
+        <div class="stat"><span class="num">¥20,000〜</span><span class="label">1泊1名2食付</span></div>
+      </div>
+    </div>
+    <div class="concept-art reveal">
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="500" fill="#ECE3D2"/>
+        <rect x="0" y="0" width="400" height="300" fill="#243447"/>
+        <rect x="0" y="290" width="400" height="10" fill="#AD8A56" opacity=".6"/>
+        <path d="M0 310 Q60 300 120 312 T240 312 T360 312 T400 310 V500 H0 Z" fill="#1E2B38"/>
+        <path d="M0 340 Q60 330 120 342 T240 342 T360 342 T400 340 V500 H0 Z" fill="#182430"/>
+        <circle cx="320" cy="90" r="46" fill="#D9C39D" opacity=".9"/>
+        <g stroke="#AD8A56" stroke-width="1" opacity=".5">
+          <line x1="0" y1="250" x2="400" y2="250"/>
+          <line x1="0" y1="230" x2="400" y2="230"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="tide-divider on-light"><svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0 22 Q150 4 300 22 T600 22 T900 22 T1200 22"/></svg></div>
+
+<!-- ONSEN -->
+<section class="section dark" id="onsen">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">ONSEN</div>
+      <h2>海を望む、<br>湯のひととき</h2>
+    </div>
+    <div class="onsen-list">
+      <div class="onsen-item reveal">
+        <div class="onsen-visual">
+          <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="320" fill="#1B2A38"/>
+            <rect y="0" width="400" height="180" fill="#233B4E"/>
+            <rect y="170" width="400" height="10" fill="#D9C39D" opacity=".5"/>
+            <path d="M0 190 Q100 175 200 190 T400 190 V320 H0 Z" fill="#16232E"/>
+            <rect x="0" y="230" width="400" height="90" fill="#28455A" opacity=".7"/>
+            <g stroke="#D9C39D" stroke-width="1" opacity=".35"><line x1="0" y1="250" x2="400" y2="250"/><line x1="0" y1="270" x2="400" y2="270"/></g>
+          </svg>
+        </div>
+        <div>
+          <div class="onsen-name">大浴場</div>
+          <h3>汐の湯</h3>
+          <p>大きく取られた窓の向こうに伊勢湾が広がる内湯。塩化物泉ならではの温まりの良さで、湯上がりも体の芯まで温かさが続きます。朝は男女入れ替え制で、二つの湯船をお楽しみいただけます。</p>
+        </div>
+      </div>
+      <div class="onsen-item reveal">
+        <div class="onsen-visual">
+          <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="320" fill="#16232E"/>
+            <rect y="0" width="400" height="150" fill="#2A4256"/>
+            <circle cx="90" cy="60" r="34" fill="#D9C39D" opacity=".85"/>
+            <rect y="140" width="400" height="10" fill="#AD8A56" opacity=".5"/>
+            <path d="M0 160 Q100 145 200 160 T400 160 V320 H0 Z" fill="#132029"/>
+            <path d="M40 210 h320 v70 a20 20 0 0 1-20 20 h-280 a20 20 0 0 1-20-20 z" fill="#233B4E"/>
+          </svg>
+        </div>
+        <div>
+          <div class="onsen-name">露天風呂</div>
+          <h3>望洋の湯</h3>
+          <p>岩組みの湯船から、視界を遮るものは何もありません。朝は凪いだ海、夕は染まる空、夜は満天の星。四季と一日の中で、幾度も違う表情を見せてくれます。</p>
+        </div>
+      </div>
+    </div>
+    <div class="onsen-note reveal">
+      <span>貸切風呂　1回50分・要予約・¥3,300〜</span>
+      <span>泉質　ナトリウム-塩化物泉（温まりの湯）</span>
+      <span>大浴場ご利用時間　15:00 – 24:00 / 6:00 – 9:30</span>
+    </div>
+  </div>
+</section>
+
+<div class="tide-divider on-dark" style="background:var(--sumi);"><svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0 22 Q150 4 300 22 T600 22 T900 22 T1200 22"/></svg></div>
+
+<!-- DINING -->
+<section class="section" id="dining">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">DINING</div>
+      <h2>海の恵みを、<br>会席で</h2>
+      <p>南知多は蟹漁と沿岸漁業が盛んな漁師町。豊浜漁港に揚がる新鮮な魚介と、知多半島が誇るブランド牛「知多牛」。汐見荘の食事は、この土地でしか味わえない組み合わせにこだわっています。</p>
+    </div>
+    <div class="plan-grid reveal">
+
+      <div class="plan-card">
+        <svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M24 14c-6 0-10 5-10 11s4 11 10 11 10-5 10-11-4-11-10-11Z"/><path d="M24 14V6"/><path d="M18 9l3 4M30 9l-3 4"/></svg>
+        <h3>南知多海鮮会席</h3>
+        <div class="plan-price">¥20,000〜 ／ 1泊2食付</div>
+        <p>旬の魚介を中心とした、汐見荘のスタンダード会席。刺身、焼き物、煮物など、南知多の恵みをひと通り。</p>
+        <span class="plan-tag">はじめての方に</span>
+      </div>
+
+      <div class="plan-card">
+        <svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="24" cy="26" rx="12" ry="9"/><path d="M14 22 L6 14M34 22 L42 14M13 30 L4 34M35 30 L44 34"/><circle cx="19" cy="24" r="1.4" fill="currentColor" stroke="none"/><circle cx="29" cy="24" r="1.4" fill="currentColor" stroke="none"/></svg>
+        <h3>渡り蟹づくし会席</h3>
+        <div class="plan-price">¥28,000〜 ／ 1泊2食付</div>
+        <p>渡り蟹を茹で、焼き、鍋、雑炊と一杯まるごと堪能する、蟹好きのための会席。</p>
+        <span class="plan-tag">蟹プラン</span>
+      </div>
+
+      <div class="plan-card">
+        <svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="18" width="32" height="14" rx="2"/><path d="M14 18v-4a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v4"/><path d="M8 32v4M40 32v4"/></svg>
+        <h3>知多牛と海の幸 欲張り会席</h3>
+        <div class="plan-price">¥26,000〜 ／ 1泊2食付</div>
+        <p>知多牛の陶板焼きと旬の海鮮、両方を主役として楽しめる欲張りな一膳。</p>
+        <span class="plan-tag">知多牛プラン</span>
+      </div>
+
+      <div class="plan-card">
+        <svg class="plan-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 30c8-14 24-14 32 0"/><path d="M24 30V14M18 20l6-6 6 6"/><circle cx="24" cy="34" r="3"/></svg>
+        <h3>蟹と知多牛 贅沢競演コース</h3>
+        <div class="plan-price">¥32,000〜 ／ 1泊2食付</div>
+        <p>渡り蟹と知多牛、両方を主役に据えた特別コース。数日前までのご予約をお願いしています。</p>
+        <span class="plan-tag">特別コース</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="tide-divider on-light"><svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0 22 Q150 4 300 22 T600 22 T900 22 T1200 22"/></svg></div>
+
+<!-- ROOMS -->
+<section class="section alt" id="rooms">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">ROOM</div>
+      <h2>全室、海側。</h2>
+      <p>十二室、すべてが伊勢湾に面しています。窓の大きさや部屋の広さによって表情は異なりますが、どの部屋からも朝の凪と夕暮れの海を眺められます。</p>
+    </div>
+    <div class="room-grid reveal">
+
+      <div class="room-card">
+        <div class="room-visual"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#EDE6D8"/><rect width="400" height="170" fill="#3D5468"/><rect y="150" width="400" height="8" fill="#AD8A56" opacity=".6"/><rect x="30" y="190" width="340" height="80" fill="#D8CBB0"/><line x1="30" y1="230" x2="370" y2="230" stroke="#AD8A56" stroke-width="1" opacity=".5"/></svg></div>
+        <div class="room-body">
+          <h3>海側和室 10畳</h3>
+          <div class="room-meta"><span>10畳＋広縁</span><span>定員 2〜4名</span></div>
+          <p>窓辺の広縁でゆっくり海を眺められる、汐見荘の基本の客室です。</p>
+          <div class="room-price">¥20,000〜 <small>／1泊1名2食付</small></div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-visual"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#EDE6D8"/><rect width="400" height="170" fill="#33495C"/><rect x="0" y="0" width="180" height="170" fill="#3D5468"/><rect y="150" width="400" height="8" fill="#AD8A56" opacity=".6"/><rect x="30" y="190" width="340" height="80" fill="#D8CBB0"/></svg></div>
+        <div class="room-body">
+          <h3>角部屋 大窓の間 12畳</h3>
+          <div class="room-meta"><span>12畳＋広縁</span><span>定員 2〜4名</span></div>
+          <p>二面採光の大きな窓から、より開放的な海の眺めを楽しめる角部屋です。</p>
+          <div class="room-price">¥24,000〜 <small>／1泊1名2食付</small></div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-visual"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#EDE6D8"/><rect width="400" height="170" fill="#2B4051"/><rect y="150" width="400" height="8" fill="#AD8A56" opacity=".6"/><rect x="30" y="190" width="150" height="80" fill="#D8CBB0"/><rect x="200" y="190" width="170" height="80" fill="#C7BBA2"/><circle cx="285" cy="230" r="24" fill="none" stroke="#AD8A56" stroke-width="2"/></svg></div>
+        <div class="room-body">
+          <h3>露天風呂付き特別室</h3>
+          <div class="room-meta"><span>専用露天風呂</span><span>定員 2〜3名</span></div>
+          <p>客室専用の露天風呂付き。誰にも気兼ねなく、海を独り占めできます。</p>
+          <div class="room-price">¥30,000〜 <small>／1泊1名2食付</small></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">FACILITIES</div>
+      <h2>館内施設のご案内</h2>
+    </div>
+    <div class="facility-grid reveal">
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg><h4>ロビー・ラウンジ「凪」</h4><span>チェックイン 15:00〜</span></div>
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14c4-8 12-8 16 0"/><path d="M12 14V4M9 8l3-4 3 4"/><circle cx="12" cy="18" r="2"/></svg><h4>大浴場「汐の湯」</h4><span>15:00–24:00 / 6:00–9:30</span></div>
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg><h4>露天風呂「望洋の湯」</h4><span>15:00–24:00 / 6:00–9:30</span></div>
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg><h4>貸切風呂</h4><span>50分制・要予約 ¥3,300〜</span></div>
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h16l-1.5 10a2 2 0 0 1-2 1.8H7.5a2 2 0 0 1-2-1.8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><h4>売店「潮騒堂」</h4><span>7:00–21:00</span></div>
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="10" width="18" height="4"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg><h4>卓球コーナー</h4><span>9:00–21:00・無料</span></div>
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10a8 8 0 0 1 16 0"/><path d="M2 14a10 10 0 0 1 20 0"/><circle cx="12" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg><h4>Wi-Fi</h4><span>館内全域で利用可</span></div>
+      <div class="facility-item"><svg class="fi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17h16M6 17V9l6-4 6 4v8"/><path d="M9 17v-5h6v5"/></svg><h4>送迎</h4><span>名鉄「内海駅」より・要予約</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="tide-divider on-light"><svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0 22 Q150 4 300 22 T600 22 T900 22 T1200 22"/></svg></div>
+
+<!-- ACCESS / SIGHTSEEING -->
+<section class="section" id="access">
+  <div class="wrap access-grid">
+    <div class="reveal">
+      <div class="eyebrow">ACCESS</div>
+      <h2>アクセス</h2>
+      <div class="access-block">
+        <p style="margin-top:20px;">〒470-3536<br>愛知県知多郡南知多町内海 汐見浜 3-12<br>TEL 0569-XX-XXXX</p>
+        <h3>お車で</h3>
+        <div class="info-line"><span>南知多道路</span><span>「豊丘IC」より約10分</span></div>
+        <h3>電車・バスで</h3>
+        <div class="info-line"><span>名鉄</span><span>「内海駅」より送迎バス約15分（要予約）</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow">SIGHTSEEING</div>
+      <h2>周辺のお出かけ先</h2>
+      <div class="spot-list" style="margin-top:20px;">
+        <div class="spot"><div class="spot-mark">岬</div><div><h4>羽豆岬</h4><p>三河湾を一望できる岬。灯台と椿の群生林があり、遊歩道の散策にも。</p></div></div>
+        <div class="spot"><div class="spot-mark">海</div><div><h4>南知多ビーチランド</h4><p>水族館と遊園地が一体となったレジャースポット。家族連れに人気。</p></div></div>
+        <div class="spot"><div class="spot-mark">市</div><div><h4>豊浜漁港 朝市</h4><p>新鮮な魚介が並ぶ、早朝限定の漁港市場。地元の活気を感じられます。</p></div></div>
+        <div class="spot"><div class="spot-mark">島</div><div><h4>篠島・日間賀島</h4><p>高速船で渡れる離島。タコとフグの名所として知られています。</p></div></div>
+        <div class="spot"><div class="spot-mark">浜</div><div><h4>内海海水浴場</h4><p>遠浅で穏やかなビーチ。夏は海水浴客で賑わいます。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tide-divider on-light"><svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0 22 Q150 4 300 22 T600 22 T900 22 T1200 22"/></svg></div>
+
+<!-- RESERVATION -->
+<section class="section alt" id="reservation">
+  <div class="wrap">
+    <div class="res-panel reveal">
+      <div class="eyebrow">RESERVATION</div>
+      <h2 style="color:var(--kinari);">ご予約</h2>
+      <p style="color:rgba(245,240,230,.7);margin-top:16px;font-size:14.5px;max-width:520px;">
+        お泊まりのご希望日と人数、プランをお選びのうえ、下記フォームよりお問い合わせください。空室状況を確認のうえ、担当よりご連絡いたします。
+      </p>
+
+      <form id="resForm" class="res-grid">
+        <div class="field">
+          <label for="checkin">チェックイン日</label>
+          <input type="date" id="checkin" required>
+        </div>
+        <div class="field">
+          <label for="nights">泊数</label>
+          <select id="nights">
+            <option>1泊</option><option>2泊</option><option>3泊以上</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="guests">人数</label>
+          <select id="guests">
+            <option>1名</option><option selected>2名</option><option>3名</option><option>4名</option><option>5名以上</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="plan">ご希望プラン</label>
+          <select id="plan">
+            <option>南知多海鮮会席（¥20,000〜）</option>
+            <option>渡り蟹づくし会席（¥28,000〜）</option>
+            <option>知多牛と海の幸 欲張り会席（¥26,000〜）</option>
+            <option>蟹と知多牛 贅沢競演コース（¥32,000〜）</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="room">ご希望のお部屋タイプ</label>
+          <select id="room">
+            <option>海側和室 10畳</option>
+            <option>角部屋 大窓の間 12畳</option>
+            <option>露天風呂付き特別室</option>
+            <option>おまかせ</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="tel">電話番号</label>
+          <input type="tel" id="tel" placeholder="0X0-XXXX-XXXX" required>
+        </div>
+        <div class="field">
+          <label for="name">お名前</label>
+          <input type="text" id="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="field">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" placeholder="example@mail.com" required>
+        </div>
+        <div class="field full">
+          <label for="note">ご要望・アレルギー等</label>
+          <textarea id="note" rows="3" placeholder="貸切風呂のご希望、食物アレルギーなどございましたらご記入ください"></textarea>
+        </div>
+
+        <div class="field full res-submit-row">
+          <button type="submit" class="btn-primary">この内容で予約を問い合わせる</button>
+          <span class="res-note">※本サイトはポートフォリオ用のデモです。実際の送信は行われません。</span>
+        </div>
+        <div class="field full res-thanks" id="resThanks">
+          お問い合わせありがとうございます。内容を確認のうえ、2営業日以内に担当よりご連絡いたします。
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">汐見荘</div>
+        <p>〒470-3536<br>愛知県知多郡南知多町内海 汐見浜 3-12<br>TEL 0569-XX-XXXX<br>チェックイン 15:00 ／ チェックアウト 10:00</p>
+      </div>
+      <div class="footer-col">
+        <h5>NAVIGATION</h5>
+        <a href="#concept">概要</a>
+        <a href="#onsen">温泉</a>
+        <a href="#dining">食事</a>
+        <a href="#rooms">客室</a>
+        <a href="#access">周辺観光</a>
+      </div>
+      <div class="footer-col">
+        <h5>RESERVATION</h5>
+        <a href="#reservation">ご予約フォーム</a>
+        <a href="#access">アクセス</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 汐見荘 — この宿・所在地は架空の設定であり、実在する施設・団体とは関係ありません（ポートフォリオ作品）。</span>
+      <span>Designed as a portfolio concept piece.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const open = mobileMenu.style.display === 'flex';
+    mobileMenu.style.display = open ? 'none' : 'flex';
+  });
+  document.querySelectorAll('.mnav').forEach(a => {
+    a.addEventListener('click', () => { mobileMenu.style.display = 'none'; });
+  });
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // fake reservation submit
+  const form = document.getElementById('resForm');
+  const thanks = document.getElementById('resThanks');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    thanks.classList.add('show');
+    thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
+
+</body>
+</html>
